@@ -19,7 +19,6 @@ export const App = () => {
       <ContactForm />
       <h2>Contacts</h2>
       {isLoading ? <p>Loading...</p> : <Filter />}
-      <Filter />
       <ContactList />
     </div>
   );

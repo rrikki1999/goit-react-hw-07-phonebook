@@ -7,13 +7,20 @@ export const ContactList = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.filter.filter || '');
 
-  
 
-
-  const filterContacts =() => contacts.filter(({ name }) =>
-    name.toLowerCase().includes(filter.trim().toLowerCase())
+  // const filterContacts =() => contacts.filter(({ name }) =>
+  //   name.toLowerCase().includes(filter.trim().toLowerCase())
     
-  );
+  // );
+  const filterContacts = () => {
+    if (!Array.isArray(contacts)) {
+      return [];
+    }
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(filter.trim().toLowerCase())
+    );
+  };
+  
 
   return (
     <>

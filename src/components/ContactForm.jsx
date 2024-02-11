@@ -19,13 +19,19 @@ const ContactForm = () => {
 
     const formData = { name, number };
 
-    const isInContacts = contacts
-      ? contacts.some(
-          ({ name, number }) =>
-            name.toLowerCase() === formData.name.toLowerCase() ||
-            number === formData.number
-        )
-      : false;
+    // const isInContacts = contacts
+    //   ? contacts.some(
+    //       ({ name, number }) =>
+    //         name.toLowerCase() === formData.name.toLowerCase() ||
+    //         number === formData.number
+    //     )
+    //   : false;
+    const isInContacts = Array.isArray(contacts) && contacts.some(
+      ({ name, number }) =>
+        name.toLowerCase() === formData.name.toLowerCase() ||
+        number === formData.number
+    );
+    
 
     if (isInContacts) {
       alert(`${formData.name} is already in contacts`);
