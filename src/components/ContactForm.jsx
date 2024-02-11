@@ -27,11 +27,11 @@ const ContactForm = () => {
     //     )
     //   : false;
     const isInContacts = Array.isArray(contacts) && contacts.some(
-      ({ name, number }) =>
-        name.toLowerCase() === formData.name.toLowerCase() ||
-        number === formData.number
-    );
-    
+  ({ name, number }) =>
+    name.toLowerCase() === formData.name.toLowerCase() ||
+    number === formData.number
+);
+
 
     if (isInContacts) {
       alert(`${formData.name} is already in contacts`);
@@ -76,7 +76,7 @@ const ContactForm = () => {
           value={number}
           onChange={handleChangeNum}
           required
-        />
+        /> 
       </label>
 
       <button className={styles.addButton} type="submit">
