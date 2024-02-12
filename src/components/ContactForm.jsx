@@ -1,31 +1,23 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import  {addContact}  from '../redux/operations';
 
 import styles from '../styles/ContactForm.module.css';
+import { selectContacts } from '../redux/selectors';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(state => state.contacts.contacts);
-
+  const contacts = useSelector(selectContacts);
+  
   const dispatch = useDispatch();
 
   const addNewContact = e => {
     e.preventDefault();
 
-
     const formData = { name, number };
 
-    // const isInContacts = contacts
-    //   ? contacts.some(
-    //       ({ name, number }) =>
-    //         name.toLowerCase() === formData.name.toLowerCase() ||
-    //         number === formData.number
-    //     )
-    //   : false;
     const isInContacts = Array.isArray(contacts) && contacts.some(
   ({ name, number }) =>
     name.toLowerCase() === formData.name.toLowerCase() ||
@@ -40,7 +32,6 @@ const ContactForm = () => {
 
     const newContact = {
       ...formData,
-      id: nanoid(),
     };
     dispatch(addContact(newContact));
     setName('');
@@ -56,7 +47,7 @@ const ContactForm = () => {
 
   return (
     <form className={styles.contactForm} onSubmit={addNewContact}>
-      <label htmlFor={nanoid()} className={styles.label}>
+      <label className={styles.label}>
         Name
         <input
           className={styles.input}
@@ -67,7 +58,7 @@ const ContactForm = () => {
           required
         />
       </label>
-      <label htmlFor={nanoid()} className={styles.label}>
+      <label className={styles.label}>
         Number
         <input
           className={styles.input}
